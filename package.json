@@ -1,0 +1,22 @@
+{
+  "name": "journaling-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "client": "cd client && npm start",
+    "server": "cd server && npm run dev",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "kill-port": "^2.0.1",
+    "mongodb": "^6.18.0",
+    "node": "^24.5.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router-dom": "^7.7.1"
+  }
+}

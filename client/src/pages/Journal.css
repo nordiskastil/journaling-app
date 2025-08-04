@@ -1,0 +1,39 @@
+.journal-page {
+  padding: 1rem;
+}
+
+.journal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.journal-header h2 {
+  margin-bottom: 0.5rem;
+}
+
+.journal-date {
+  font-size: 1rem;
+  color: #6f907b;
+}
+
+.journal-textarea {
+  min-height: 300px;
+  resize: vertical;
+}
+
+.journal-save-btn {
+  background-color: #6f907b;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.journal-save-btn:hover {
+  background-color: #9bb2a3;
+}

@@ -1,0 +1,43 @@
+.gratitude-page {
+  padding: 1rem;
+}
+
+.gratitude-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.gratitude-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gratitude-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gratitude-item input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.gratitude-save-btn {
+  margin-top: 1rem;
+  background-color: #ffb0ad;
+  color: #3b3e54;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.gratitude-save-btn:hover {
+  background-color: #f19995;
+}
