@@ -1,42 +1,63 @@
 // server.js
-// This file sets up the Express server, connects to MongoDB, and defines API routes.
-const express = require('express');
-const cors = require('cors');
-const dotenv = require('dotenv');
-const connectToMongo = require('./db');
 
-dotenv.config(); // Load environment variables from .env
+import mongoose from 'mongoose';
+import express from 'express';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import connectToMongo from './db.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Check if MONGO_URI is defined
+dotenv.config(); // Load environment variables
+
+// Ensure MONGO_URI exists
 if (!process.env.MONGO_URI) {
-  console.error('❌ MONGO_URI is not defined in .env file.');
-  process.exit(1); // Exit the server if missing
+  console.error('❌ MONGO_URI is not defined.');
+  process.exit(1);
 }
 
-dotenv.config(); // Load environment variables from .env
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
 connectToMongo();
 
-app.use(cors());
+// Middleware
 app.use(express.json());
 
+// CORS for Netlify frontend
+app.use(
+  cors({
+    origin: process.env.CLIENT_ORIGIN || '*', // In production, set exact Netlify URL
+    credentials: true,
+  })
+);
+
 // API routes
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/journal', require('./routes/journal'));
-app.use('/api/gratitude', require('./routes/gratitude'));
-app.use('/api/routine', require('./routes/routine'));
+app.use('/api/auth', require('./routes/auth.js'));
+app.use('/api/journal', require('./routes/journal.js'));
+app.use('/api/gratitude', require('./routes/gratitude.js'));
+app.use('/api/routine', require('./routes/routine.js'));
 
-// Fallback route
-app.get('/', (req, res) => {
-  res.send('Welcome to the JournalApp API');
-});
+// Optional: Serve frontend in production
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-// Start the server
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '..', 'client', 'build')));
+
+  app.get('*', (req, res) =>
+    res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
+  );
+} else {
+  app.get('/', (req, res) => {
+    res.send('Welcome to the JournalApp API');
+  });
+}
+
+// Start server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
 
 

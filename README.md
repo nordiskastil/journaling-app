@@ -69,8 +69,8 @@ Dark mode and theme personalization
 
 
 ## View it live
-Every project should be deployed somewhere. Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
-
+Frontend: https://moodflow-journaling.netlify.app/
+Backend: https://journaling-app-32hk.onrender.com
 
 ## Getting Started with the Project
 

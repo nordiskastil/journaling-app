@@ -34,7 +34,7 @@ const Journal = () => {
     if (!user) return;
 
     try {
-      await axios.post('http://localhost:5000/api/journal', {
+      await axios.post('https://journaling-app-32hk.onrender.com', {
         user: user._id,
         date,
         text,
